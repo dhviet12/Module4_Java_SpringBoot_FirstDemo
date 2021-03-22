@@ -33,7 +33,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/products").hasAnyRole("USER", "ADMIN").
                 and()
-                .authorizeRequests().antMatchers(HttpMethod.GET, "/products/create").hasRole("ADMIN").
+                .authorizeRequests().antMatchers(HttpMethod.GET, "/products/create").hasAnyRole("ADMIN").
                 and()
                 .authorizeRequests().antMatchers(HttpMethod.GET, "/products/edit/{id}").hasRole("ADMIN").
                 and()
@@ -41,7 +41,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 and()
                 .authorizeRequests().antMatchers(HttpMethod.POST, "/products/search").hasAnyRole("ADMIN", "USER")
                 .and()
-                .formLogin().successHandler(customizeSuccessHandle)
+                .formLogin().successHandler(customizeSuccessHandle).loginPage("/login").permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
         http.csrf().disable();
