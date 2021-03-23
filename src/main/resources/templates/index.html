@@ -32,41 +32,45 @@
     </script>
 </head>
 <body>
-<h2>
-    <a th:href="@{/products/create}">Create</a>
-</h2>
-<form th:action="@{/products/search}" method="post">
-    <select th:name="category">
-        <th:block th:each="category:${listCategory}">
-            <option th:value="${category.id}" th:text="${   category.name}"></option>
-        </th:block>
-    </select>
-    <input type="submit" value="search">
-</form>
-<table th:border="1" th:cellspacing="0" th:cellpadding="10">
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Action</th>
-    </tr>
-    <tr th:each="p:${list}">
-        <td th:text="${p.name}"></td>
-        <td th:text="${p.price}"></td>
-        <td th:text="${p.category.name}"></td>
-        <td>
-            <a th:href="@{'/products/edit/'+${p.id}}">Edit</a>
-            <a th:class="delete" th:href="@{'/products/delete/'+${p.id}}">Delete</a>
-        </td>
-    </tr>
-</table>
-<div>
-    <a th:href="@{'/products'(page=${list.number - 1})}" th:if="${list.hasPrevious()}">Previous</a>
-    <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
-    <a th:href="@{'/products'(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
-</div>
 
-<h2><a th:href="@{/logout}">Log out</a></h2>
+<div th:align="center">
+    <h2>
+        <a th:href="@{/products/create}">Create</a>
+    </h2>
+    <form th:action="@{/products/search}" method="post">
+        <select th:name="category">
+            <th:block th:each="category:${listCategory}">
+                <option th:value="${category.id}" th:text="${   category.name}"></option>
+            </th:block>
+        </select>
+        <input type="submit" value="search">
+    </form>
+    <table th:border="1" th:cellspacing="0" th:cellpadding="10">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="p:${list}">
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.price}"></td>
+            <td th:text="${p.category.name}"></td>
+            <td>
+                <a th:href="@{'/products/edit/'+${p.id}}">Edit</a>
+                <a th:class="delete" th:href="@{'/products/delete/'+${p.id}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <a th:href="@{'/products'(page=${list.number - 1})}" th:if="${list.hasPrevious()}">Previous</a>
+        <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+        <a th:href="@{'/products'(page=${list.number + 1})}" th:if="${list.hasNext()}">Next</a>
+    </div>
+
+    <h2><a th:href="@{/logout}">Log out</a></h2>
+
+</div>
 
 
 

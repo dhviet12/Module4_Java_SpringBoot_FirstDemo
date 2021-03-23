@@ -24,6 +24,8 @@ public class UserAccountService implements IUserAccountService, UserDetailsServi
         return userAccountRepository.getUserAccountByName(name);
     }
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserAccount userAccount = this.getAccountByName(username);
@@ -48,5 +50,10 @@ public class UserAccountService implements IUserAccountService, UserDetailsServi
         }
         userAccount = this.getAccountByName(name);
         return userAccount;
+    }
+
+    @Override
+    public UserAccount addAccount(UserAccount userAccount) {
+        return userAccountRepository.save(userAccount);
     }
 }

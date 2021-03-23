@@ -5,4 +5,5 @@ import com.codegym.c1020g1.model.UserAccount;
 public interface IUserAccountService {
     UserAccount getAccountByName(String name);
     UserAccount getCurrentAccount();
+    UserAccount addAccount(UserAccount userAccount);
 }

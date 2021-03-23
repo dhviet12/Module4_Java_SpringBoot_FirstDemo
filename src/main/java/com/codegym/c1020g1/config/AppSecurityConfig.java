@@ -24,6 +24,8 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService((UserDetailsService) accountService).passwordEncoder(NoOpPasswordEncoder.getInstance());
     }
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
